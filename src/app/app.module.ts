@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
@@ -42,7 +42,8 @@ import {ShoppingCardService} from './restaurant-detail/shopping-card/shopping-ca
   ],
   providers: [
     RestaurantService,
-    ShoppingCardService
+    ShoppingCardService,
+    {provide: LOCALE_ID, useValue: 'pt-BR'}
   ],
   bootstrap: [AppComponent]
 })
