@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ShoppingCardService} from './shopping-card.service';
 import {CartItemModel} from './cart-item.model';
+import {MenuItemModel} from '../menu-item/menu-item.model';
 
 @Component({
   selector: 'mt-shopping-card',
@@ -30,7 +31,7 @@ export class ShoppingCardComponent implements OnInit {
     this.shoppingCartService.removeItem(item);
   }
 
-  addItem(item: CartItemModel): void {
+  addItem(item: MenuItemModel): void {
     this.shoppingCartService.addItem(item);
   }
 }

@@ -9,9 +9,4 @@ export class CartItemModel {
   value(): number {
     return this.menuItem.price * this.quantity;
   }
-  name: string;
-  id: number;
-  imagePath: string;
-  description: string;
-  price: number;
 }
