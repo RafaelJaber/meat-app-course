@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ShoppingCardService} from './shopping-card.service';
+import {CartItemModel} from './cart-item.model';
 
 @Component({
   selector: 'mt-shopping-card',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShoppingCardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private shoppingCartService: ShoppingCardService) { }
 
   ngOnInit() {
+  }
+
+  items(): CartItemModel[] {
+    return this.shoppingCartService.items;
+  }
+
+  total(): number {
+    return this.shoppingCartService.total();
   }
 
 }
