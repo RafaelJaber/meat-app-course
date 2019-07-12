@@ -19,7 +19,7 @@
           <th>({{item.quantity}}x) {{item.menuItem.name}}</th>
           <td class="text-right">{{item.value() | currency: 'BRL': true}}</td>
           <td class="text-right">
-            <a class="btn btn-danger" (click)="removeItem(item)">
+            <a class="btn btn-sm danger" (click)="removeItem(item)">
               <i class="fa fa-remove">
 
               </i></a>
