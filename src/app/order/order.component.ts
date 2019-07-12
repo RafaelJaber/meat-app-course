@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormBuilder, Validators} from '@angular/forms';
+import {FormGroup, FormBuilder, Validators, AbstractControl} from '@angular/forms';
 
 import {RadioOptionModel} from '../shared/radio/radio-option.model';
 import {OrderService} from './order.service';
@@ -42,7 +42,20 @@ export class OrderComponent implements OnInit {
       number: this.formBuilder.control('', [Validators.required, Validators.pattern(this.numberPattern)]),
       complement: this.formBuilder.control(''),
       paymentOption: this.formBuilder.control('', [Validators.required])
-    });
+    }, {validator: OrderComponent.equalsTo});
+  }
+
+  // tslint:disable-next-line:member-ordering
+  static equalsTo(group: AbstractControl): {[key: string]: boolean} {
+    const email = group.get('email');
+    const emailConf = group.get('emailConf');
+    if (!email || !emailConf) {
+      return undefined;
+    }
+    if (email.value !== emailConf.value) {
+      return {emailNotMarch: true};
+    }
+    return undefined;
   }
 
   itemsValue(): number {
