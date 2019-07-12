@@ -11,16 +11,14 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { RestaurantComponent } from './restaurants/restaurant/restaurant.component';
-import {RestaurantService} from './restaurants/restaurant/restaurant.service';
 import { RestaurantDetailComponent } from './restaurant-detail/restaurant-detail.component';
 import { MenuComponent } from './restaurant-detail/menu/menu.component';
 import { ShoppingCardComponent } from './restaurant-detail/shopping-card/shopping-card.component';
 import { MenuItemComponent } from './restaurant-detail/menu-item/menu-item.component';
 import { ReviewsComponent } from './restaurant-detail/reviews/reviews.component';
-import {ShoppingCardService} from './restaurant-detail/shopping-card/shopping-card.service';
-import {OrderService} from './order/order.service';
 import { OrderSumaryComponent } from './order-sumary/order-sumary.component';
 import {SharedModule} from './shared/shared.module';
+import {CoreModule} from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -40,12 +38,10 @@ import {SharedModule} from './shared/shared.module';
     BrowserModule,
     HttpModule,
     SharedModule,
+    CoreModule,
     RouterModule.forRoot(ROUTES)
   ],
   providers: [
-    RestaurantService,
-    ShoppingCardService,
-    OrderService,
     {provide: LOCALE_ID, useValue: 'pt-BR'}
   ],
   bootstrap: [AppComponent]
