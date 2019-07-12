@@ -52,7 +52,7 @@ export class OrderComponent implements OnInit {
     this.orderService.checkOrder(order)
       .subscribe((orderId: number) => {
         console.log(`Compra concluida: ${orderId}`);
-        // this.orderService.clear();
+        this.orderService.clear();
       });
   }
 }
