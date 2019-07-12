@@ -3,6 +3,7 @@ import {RadioOptionModel} from '../shared/radio/radio-option.model';
 import {OrderService} from './order.service';
 import {CartItemModel} from '../restaurant-detail/shopping-card/cart-item.model';
 import {OrderItemModel, OrderModel} from './order.model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'mt-order',
@@ -20,7 +21,8 @@ export class OrderComponent implements OnInit {
   ];
 
   constructor(
-    private orderService: OrderService
+    private orderService: OrderService,
+    private route: Router
   ) { }
 
   ngOnInit() {
@@ -51,6 +53,7 @@ export class OrderComponent implements OnInit {
       .map((item: CartItemModel) => new OrderItemModel(item.quantity, item.menuItem.id));
     this.orderService.checkOrder(order)
       .subscribe((orderId: number) => {
+        this.route.navigate(['/order-summary']);
         console.log(`Compra concluida: ${orderId}`);
         this.orderService.clear();
       });
