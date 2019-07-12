@@ -1,0 +1,25 @@
+<div class="table-responsive" *ngIf="!itemsValue">
+  <table>
+    <tbody>
+    <tr>
+      Sem Itens no Carrinho
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div class="table-responsive" *ngIf="itemsValue">
+  <table class="table">
+    <tbody><tr>
+      <th style="width:50%">Itens:</th>
+      <td class="text-right">{{itemsValue | currency: 'BRL': true}}</td>
+    </tr>
+    <tr>
+      <th>Frete:</th>
+      <td class="text-right">{{delivery | currency: 'BRL': true}}</td>
+    </tr>
+    <tr>
+      <th>Total:</th>
+      <td class="text-right">{{total() | currency: 'BRL': true}}</td>
+    </tr>
+    </tbody></table>
+</div>
