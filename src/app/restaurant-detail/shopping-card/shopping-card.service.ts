@@ -26,4 +26,16 @@ export class ShoppingCardService {
       .map(item => item.value())
       .reduce((prev, value) => prev + value, 0);
   }
+
+  increaseQty(item: CartItemModel): void {
+    item.quantity = item.quantity + 1;
+  }
+
+  decreaseQty(item: CartItemModel): void {
+    if (item.quantity > 1) {
+      item.quantity = item.quantity - 1;
+    } else {
+      this.removeItem(item);
+    }
+  }
 }
