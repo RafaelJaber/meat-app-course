@@ -16,7 +16,7 @@ import {trigger, state, style, animate, transition} from '@angular/animations';
         style({
           opacity: 0,
           transform: 'scale(0.3)'
-        }), animate('250ms 0s ease-in-out')
+        }), animate('250ms 100ms ease-in-out')
       ])
     ])
   ]
