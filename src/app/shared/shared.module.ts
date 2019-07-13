@@ -8,6 +8,7 @@ import {RatingComponent} from './rating/rating.component';
 import {ShoppingCardService} from '../restaurant-detail/shopping-card/shopping-card.service';
 import {RestaurantService} from '../restaurants/restaurant/restaurant.service';
 import {OrderService} from '../order/order.service';
+import { SnackbarComponent } from './snackbar/snackbar.component';
 
 
 
@@ -16,7 +17,8 @@ import {OrderService} from '../order/order.service';
   declarations: [
     InputComponent,
     RadioComponent,
-    RatingComponent
+    RatingComponent,
+    SnackbarComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +31,8 @@ import {OrderService} from '../order/order.service';
     RatingComponent,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SnackbarComponent
   ],
 })
 
