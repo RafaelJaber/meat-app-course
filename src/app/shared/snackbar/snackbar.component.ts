@@ -41,7 +41,7 @@ export class SnackbarComponent implements OnInit {
       .do(message => {
         this.message = message;
         this.snackVisibility = 'visible';
-      }).switchMap(message => Observable.timer(2000))
+      }).switchMap(message => Observable.timer(3000))
         .subscribe(timer => this.snackVisibility = 'hidden');
   }
 
