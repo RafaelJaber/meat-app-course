@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
       email: this.fb.control('', [Validators.required]),
       password: this.fb.control('', [Validators.required])
     });
-    this.navigateTo = this.activatedRoute.snapshot.params['to'] || '/';
+    this.navigateTo = this.activatedRoute.snapshot.params['to'] || btoa('/');
   }
 
   login() {
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
       }, (response) => {
         this.notification.notify(`Usuário ou senha inválidos`)
       }, () => {
-        this.router.navigate([this.navigateTo])
+        this.router.navigate([atob(this.navigateTo)])
       })
   }
 }
