@@ -6,6 +6,7 @@ import {RestaurantService} from '../restaurants/restaurant/restaurant.service';
 import {ShoppingCardService} from '../restaurant-detail/shopping-card/shopping-card.service';
 import {NotificationService} from './notification.service';
 import {LoggedinGuard} from '../security/loggedin.guard';
+import {LeaveOrderGuard} from './leave-order.guard';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {LoggedinGuard} from '../security/loggedin.guard';
     RestaurantService,
     ShoppingCardService,
     NotificationService,
-    LoggedinGuard
+    LoggedinGuard,
+    LeaveOrderGuard
   ]
 })
 export class CoreModule {}
