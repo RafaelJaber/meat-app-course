@@ -7,6 +7,8 @@ import {ShoppingCardService} from '../restaurant-detail/shopping-card/shopping-c
 import {NotificationService} from './notification.service';
 import {LoggedinGuard} from '../security/loggedin.guard';
 import {LeaveOrderGuard} from './leave-order.guard';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {AuthInterceptor} from './auth.interceptor';
 
 
 @NgModule({
@@ -17,7 +19,8 @@ import {LeaveOrderGuard} from './leave-order.guard';
     ShoppingCardService,
     NotificationService,
     LoggedinGuard,
-    LeaveOrderGuard
+    LeaveOrderGuard,
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ]
 })
 export class CoreModule {}
