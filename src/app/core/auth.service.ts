@@ -1,0 +1,27 @@
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/do';
+import {MEAT_API} from '../app.api';
+import {ShortUserModel} from '../security/login/short-user.model';
+
+
+@Injectable()
+export class AuthService {
+
+  shortUser: ShortUserModel;
+
+  constructor (
+    private http: HttpClient
+  ) {}
+
+  isLoggedIn(): boolean {
+    return this.shortUser !== undefined
+  }
+
+  login(email: string, password: string): Observable<ShortUserModel> {
+    return this.http.post<ShortUserModel>(`${MEAT_API}api-token-auth/`,
+      {username: email, password: password})
+      .do(user => this.shortUser = user)
+  }
+}
