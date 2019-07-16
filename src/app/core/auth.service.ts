@@ -30,4 +30,8 @@ export class AuthService {
   handleLogin(path?: string): void {
     this.router.navigate(['/login', btoa(path)])
   }
+
+  logout(): void {
+    this.shortUser = undefined
+  }
 }
