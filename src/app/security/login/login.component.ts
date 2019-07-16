@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../../core/auth.service';
 import {NotificationService} from '../../core/notification.service';
 
@@ -11,18 +12,22 @@ import {NotificationService} from '../../core/notification.service';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+  navigateTo: string;
 
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
-    private notification: NotificationService
+    private notification: NotificationService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
       email: this.fb.control('', [Validators.required]),
       password: this.fb.control('', [Validators.required])
-    })
+    });
+    this.navigateTo = this.activatedRoute.snapshot.params['to'] || '/';
   }
 
   login() {
@@ -33,6 +38,8 @@ export class LoginComponent implements OnInit {
         return user
       }, (response) => {
         this.notification.notify(`Usuário ou senha inválidos`)
+      }, () => {
+        this.router.navigate([this.navigateTo])
       })
   }
 }

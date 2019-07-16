@@ -27,7 +27,7 @@ export class AuthService {
       .do(user => this.shortUser = user)
   }
 
-  handleLogin(): void {
-    this.router.navigate(['/login'])
+  handleLogin(path?: string): void {
+    this.router.navigate(['/login', path])
   }
 }

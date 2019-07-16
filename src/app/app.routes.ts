@@ -13,8 +13,8 @@ import {LoggedinGuard} from './security/loggedin.guard';
 
 export const ROUTES: Routes = [
   {path: '', component: HomeComponent},
+  {path: 'login/:to', component: LoginComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'restaurant', component: RestaurantsComponent},
   {path: 'restaurant/:slug', component: RestaurantDetailComponent,
     children: [
       {path: '', redirectTo: 'menu', pathMatch: 'full'},
@@ -22,6 +22,7 @@ export const ROUTES: Routes = [
       {path: 'reviews', component: ReviewsComponent}
     ]
   },
+  {path: 'restaurant', component: RestaurantsComponent},
   {path: 'order', loadChildren: './order/order.module#OrderModule', canLoad: [LoggedinGuard]},
   {path: 'order-summary', component: OrderSumaryComponent},
   {path: 'about', loadChildren: './about/about.module#AboutModule'},
