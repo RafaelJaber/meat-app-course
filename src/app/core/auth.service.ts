@@ -2,20 +2,27 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/filter';
 import {MEAT_API} from '../app.api';
 import {ShortUserModel} from '../security/login/short-user.model';
-import {Router} from '@angular/router';
+import {NavigationEnd, Router} from '@angular/router';
 
 
 @Injectable()
 export class AuthService {
 
   shortUser: ShortUserModel;
+  lastUrl: string;
 
   constructor (
     private http: HttpClient,
     private router: Router
-  ) {}
+  ) {
+    this.router.events.filter(e => e instanceof NavigationEnd)
+      .subscribe((e: NavigationEnd) => {
+        this.lastUrl = e.url
+      })
+  }
 
   isLoggedIn(): boolean {
     return this.shortUser !== undefined
@@ -27,7 +34,7 @@ export class AuthService {
       .do(user => this.shortUser = user)
   }
 
-  handleLogin(path?: string): void {
+  handleLogin(path: string = this.lastUrl): void {
     this.router.navigate(['/login', btoa(path)])
   }
 
