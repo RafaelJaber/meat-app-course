@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {RestaurantModel} from './restaurant.model';
 
 import {MEAT_API} from '../../app.api';
@@ -15,30 +15,26 @@ import {MenuItemModel} from '../../restaurant-detail/menu-item/menu-item.model';
 @Injectable()
 export class RestaurantService {
 
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
   }
 
   restaurants(search?: string): Observable<RestaurantModel[]> {
-     return  this.http.get(`${MEAT_API}restaurants/`, {params: {search: search}})
-      .map(response => response.json())
-       .catch(ErrorHandler.handleError);
+    let params: HttpParams = undefined
+    if (search) {
+      params = new HttpParams().append('search', search);
+    }
+     return  this.http.get<RestaurantModel[]>(`${MEAT_API}restaurants/`, {params: params})
   }
 
   restaurantById(slug: string): Observable<RestaurantModel> {
-    return this.http.get(`${MEAT_API}restaurants/${slug}/`)
-      .map(response => response.json())
-      .catch(ErrorHandler.handleError);
+    return this.http.get<RestaurantModel>(`${MEAT_API}restaurants/${slug}/`)
   }
 
   reviewsOfRestaurants(slug: string): Observable<ReviewModel[]> {
-    return this.http.get(`${MEAT_API}reviews/?search=${slug}`)
-      .map(response => response.json())
-      .catch(ErrorHandler.handleError);
+    return this.http.get<ReviewModel[]>(`${MEAT_API}reviews/?search=${slug}`)
   }
 
   menuOfRestaurants(slug: string): Observable<MenuItemModel[]> {
-    return this.http.get(`${MEAT_API}menu/?search=${slug}`)
-      .map(response => response.json())
-      .catch(ErrorHandler.handleError);
+    return this.http.get<MenuItemModel[]>(`${MEAT_API}menu/?search=${slug}`)
   }
 }
